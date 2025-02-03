@@ -46,10 +46,10 @@ jobs:
           pip install platformio  # Install PlatformIO CLI
 
       - name: Build Firmware for ESP8266
-        run: pio run -e esp8266  # Compile the firmware for ESP8266
+        run: pio run -e esp12e  # Compile the firmware for ESP8266 (Use esp12e environment name)
 
       - name: Upload Compiled Firmware
         uses: actions/upload-artifact@v4  # Upload the compiled firmware as an artifact
         with:
           name: firmware-esp8266
-          path: .pio/build/esp8266/firmware.*  # Path to the compiled firmware
+          path: .pio/build/esp12e/firmware.*  # Path to the compiled firmware
