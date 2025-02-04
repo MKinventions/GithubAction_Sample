@@ -1,7 +1,7 @@
 name: Build and Compile Firmware
 
 description: |
-  This workflow automates the compilation and build process for Arduino Nano, ESP8266, and ESP32 using PlatformIO.
+  This workflow automates the compilation and build process for Arduino Nano and ESP8266 using PlatformIO.
 
 on:
   push:
@@ -12,6 +12,8 @@ on:
       - main  # Trigger build on pull requests to main branch
 
 jobs:
+  
+  #############################[NANO]######################################################3
   build_nano:
     name: Compile Firmware for Arduino Nano
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
@@ -33,6 +35,8 @@ jobs:
           name: firmware-nano
           path: .pio/build/nanoatmega328/firmware.*  # Path to the compiled firmware
 
+
+  ############################[ESP8266]#######################################################3
   build_esp8266:
     name: Compile Firmware for ESP8266
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
@@ -54,6 +58,7 @@ jobs:
           name: firmware-esp8266
           path: .pio/build/esp12e/firmware.*  # Path to the compiled firmware
 
+##############################[ESP32]#####################################################
   build_esp32:
     name: Compile Firmware for ESP32
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
@@ -73,4 +78,4 @@ jobs:
         uses: actions/upload-artifact@v4  # Upload the compiled firmware as an artifact
         with:
           name: firmware-esp32
-          path: .pio/build/esp32dev/firmware.*  # Path to the compiled firmware
+          path: .pio/build/esp32dev/firmware.*  # Path to the compiled firmware    
