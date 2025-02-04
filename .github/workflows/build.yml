@@ -1,7 +1,7 @@
 name: Build and Compile Firmware
 
 description: |
-  This workflow automates the compilation and build process for Arduino Nano and ESP8266 using PlatformIO.
+  This workflow automates the compilation and build process for Arduino Nano, ESP8266 and ESP32 using PlatformIO.
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
 
 jobs:
   
-  #############################[NANO]######################################################3
+  #############################[NANO]######################################################
   build_nano:
     name: Compile Firmware for Arduino Nano
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
@@ -35,8 +35,30 @@ jobs:
           name: firmware-nano
           path: .pio/build/nanoatmega328/firmware.*  # Path to the compiled firmware
 
+ #############################[UNO]######################################################
+ build_uno:
+  name: Compile Firmware for Arduino Uno
+  runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+  steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4  # Fetch the latest code from the repository
 
-  ############################[ESP8266]#######################################################3
+    - name: Install PlatformIO
+      run: |
+        python -m pip install --upgrade pip
+        pip install platformio  # Install PlatformIO CLI
+
+    - name: Build Firmware for Arduino Uno
+      run: pio run -e uno  # Compile the firmware for Arduino Nano
+
+    - name: Upload Compiled Firmware
+      uses: actions/upload-artifact@v4  # Upload the compiled firmware as an artifact
+      with:
+        name: firmware-uno
+        path: .pio/build/uno/firmware.*  # Path to the compiled firmware
+
+
+  ############################[ESP8266]#####################################################
   build_esp8266:
     name: Compile Firmware for ESP8266
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
@@ -58,7 +80,8 @@ jobs:
           name: firmware-esp8266
           path: .pio/build/esp12e/firmware.*  # Path to the compiled firmware
 
-##############################[ESP32]#####################################################
+
+  ##############################[ESP32]#####################################################
   build_esp32:
     name: Compile Firmware for ESP32
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
