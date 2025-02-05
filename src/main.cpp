@@ -17,7 +17,7 @@
 const int addr1 = 10;
 bool ledState = false;
 
-void ledBlink();
+void ledBlink(int delayTime);
 
 void setup()
 {
@@ -37,10 +37,11 @@ void setup()
 void loop()
 {
 
-  ledBlink();
+  ledBlink(100);
+  
 }
 
-void ledBlink()
+void ledBlink(int delayTime)
 {
   ledState = !ledState;
   EEPROM.write(addr1, ledState);
@@ -49,5 +50,5 @@ void ledBlink()
 #endif
 
   digitalWrite(LED, ledState); // Toggle the LED
-  delay(1000);                 // Wait for 1 second
+  delay(delayTime);                 // Wait for 1 second
 }
