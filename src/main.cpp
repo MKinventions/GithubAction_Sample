@@ -46,11 +46,12 @@ void loop()
 
   if (buttonState)
   {
-    digitalWrite(LED, HIGH);
+    ledState = true;
   }else{
-    digitalWrite(LED, LOW);
+    ledState = false;
   }
   
+  digitalWrite(LED, ledState);
   // ledBlink(100);
   
 }
