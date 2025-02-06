@@ -27,13 +27,13 @@ jobs:
           pip install platformio  # Install PlatformIO CLI
 
       - name: Build Firmware for Arduino Nano
-        run: pio run -e nanoatmega328  # Compile the firmware for Arduino Nano
+        run: pio run -e nano  # Compile the firmware for Arduino Nano
 
       - name: Upload Compiled Firmware
         uses: actions/upload-artifact@v4  # Upload the compiled firmware as an artifact
         with:
           name: firmware-nano
-          path: .pio/build/nanoatmega328/firmware.*  # Path to the compiled firmware
+          path: .pio/build/nano/firmware.*  # Path to the compiled firmware
 
   #############################[UNO]######################################################
   build_uno:
@@ -72,13 +72,13 @@ jobs:
           pip install platformio  # Install PlatformIO CLI
 
       - name: Build Firmware for ESP8266
-        run: pio run -e esp12e  # Compile the firmware for ESP8266 (Use esp12e environment name)
+        run: pio run -e esp8266  # Compile the firmware for ESP8266 (Use esp12e environment name)
 
       - name: Upload Compiled Firmware
         uses: actions/upload-artifact@v4  # Upload the compiled firmware as an artifact
         with:
           name: firmware-esp8266
-          path: .pio/build/esp12e/firmware.*  # Path to the compiled firmware
+          path: .pio/build/esp8266/firmware.*  # Path to the compiled firmware
 
 
   ##############################[ESP32]#####################################################
@@ -95,10 +95,10 @@ jobs:
           pip install platformio  # Install PlatformIO CLI
 
       - name: Build Firmware for ESP32
-        run: pio run -e esp32dev  # Compile the firmware for ESP32
+        run: pio run -e esp32  # Compile the firmware for ESP32
 
       - name: Upload Compiled Firmware
         uses: actions/upload-artifact@v4  # Upload the compiled firmware as an artifact
         with:
           name: firmware-esp32
-          path: .pio/build/esp32dev/firmware.*  # Path to the compiled firmware    
+          path: .pio/build/esp32/firmware.*  # Path to the compiled firmware    
