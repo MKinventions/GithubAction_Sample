@@ -12,7 +12,7 @@ void setup()
   EEPROM.begin(512);
 #endif
 
-  Serial.begin(9600);
+  Serial.begin(BAUDRATE);
   Serial.println("Restarted");
 
   pinMode(LED, OUTPUT); // Set LED pin as output
